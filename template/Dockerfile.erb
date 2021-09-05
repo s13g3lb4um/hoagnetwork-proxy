@@ -8,7 +8,7 @@ ENV NGINX_RTMP_MODULE_VERSION <%= @config['nginx']['rmtp'] %>
 
 # Install dependencies
 RUN apt-get update && \
-    apt-get install -y ca-certificates openssl libssl-dev certbot && \
+    apt-get install -y ca-certificates openssl libssl-dev certbot python3-certbot-nginx && \
     rm -rf /var/lib/apt/lists/*
 
 # Download and decompress Nginx
@@ -27,7 +27,7 @@ RUN mkdir -p /tmp/build/nginx-rtmp-module && \
 # Build and install Nginx
 # The default puts everything under /usr/local/nginx, so it's needed to change
 # it explicitly. Not just for order but to have it in the PATH
-RUN cd /tmp/build/nginx/${NGINX_VERSION} && \
+RUN cd /tmp/build/nginx/nginx-${NGINX_VERSION} && \
     ./configure \
         --sbin-path=/usr/local/sbin/nginx \
         --conf-path=/etc/nginx/nginx.conf \
