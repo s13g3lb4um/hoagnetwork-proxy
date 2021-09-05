@@ -1,10 +1,10 @@
 FROM buildpack-deps:stretch
 
-LABEL maintainer="Hoagnetwork"
+LABEL maintainer="<%= @config['Docker']['maintainer'] %>"
 
 # Versions of Nginx and nginx-rtmp-module to use
-ENV NGINX_VERSION 1.20.0
-ENV NGINX_RTMP_MODULE_VERSION 1.2.2
+ENV NGINX_VERSION <%= @config['nginx']['version'] %>
+ENV NGINX_RTMP_MODULE_VERSION <%= @config['nginx']['rmtp'] %>
 
 # Install dependencies
 RUN apt-get update && \
